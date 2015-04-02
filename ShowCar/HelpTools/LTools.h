@@ -38,6 +38,8 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 
 + (id)shareInstance;
 
++(UIImage *)screenShot;
+
 
 + (void)getRequestWithBaseUrl:(NSString *)baseUrl
                    parameters:(NSDictionary *)paramsDic

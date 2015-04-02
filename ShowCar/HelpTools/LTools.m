@@ -10,6 +10,7 @@
 #import <CommonCrypto/CommonDigest.h>
 #import "AppDelegate.h"
 #import "UIView+Frame.h"
+#import "UIImage+ImageEffects.h"
 
 @implementation LTools
 {
@@ -26,6 +27,18 @@
     });
     
     return dataBlock;
+}
+
+///截图并模糊处理
++(UIImage *)screenShot
+{
+    UIGraphicsBeginImageContextWithOptions([UIApplication sharedApplication].keyWindow.bounds.size,YES,0.0f);
+    [[UIApplication sharedApplication].keyWindow drawViewHierarchyInRect:[UIApplication sharedApplication].keyWindow.bounds afterScreenUpdates:YES];
+    UIImage *uiImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    UIImage * screenShot = [uiImage applyBlurWithRadius:3 tintColor:[UIColor colorWithWhite:0.2 alpha:0.1] saturationDeltaFactor:1.0 maskImage:nil];
+    
+    return screenShot;
 }
 
 #pragma - mark MD5 加密

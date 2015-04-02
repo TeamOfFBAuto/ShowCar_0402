@@ -48,6 +48,12 @@
     
     [self networkForUserShouCang:1];
     
+    //登录页面
+    
+    NewLogInView * loginView = [[NewLogInView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];
+    loginView.backgroundColor = [UIColor colorWithPatternImage:[LTools screenShot]];
+    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
+    
 }
 
 - (void)didReceiveMemoryWarning {
