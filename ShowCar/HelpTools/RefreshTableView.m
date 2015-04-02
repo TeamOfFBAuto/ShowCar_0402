@@ -163,7 +163,12 @@
     // overide, the actual loading data operation is done in the subclass
 }
 
-//成功加载
+/**
+ *  更新数据源
+ *
+ *  @param data      新请求的一页数据
+ *  @param totalPage 总的页数
+ */
 - (void)reloadData:(NSArray *)data total:(int)totalPage
 {
     if (self.pageNum < totalPage) {

@@ -12,20 +12,24 @@
 	<dict>
 		<key>79DAA550B2413714F1196F79E6DA9A08E0B23AE2</key>
 		<string>github.com:TeamOfFBAuto/ShowCar.git</string>
+		<key>8664B890A0749AA41980388D2950E75515538604</key>
+		<string>https://github.com/TeamOfFBAuto/ShowCar_0402.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
 	<string>ShowCar.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>79DAA550B2413714F1196F79E6DA9A08E0B23AE2</key>
+		<string>../../ShowCar</string>
+		<key>8664B890A0749AA41980388D2950E75515538604</key>
 		<string>..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>github.com:TeamOfFBAuto/ShowCar.git</string>
+	<string>https://github.com/TeamOfFBAuto/ShowCar_0402.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>79DAA550B2413714F1196F79E6DA9A08E0B23AE2</string>
+	<string>8664B890A0749AA41980388D2950E75515538604</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
@@ -35,6 +39,14 @@
 			<string>79DAA550B2413714F1196F79E6DA9A08E0B23AE2</string>
 			<key>IDESourceControlWCCName</key>
 			<string>ShowCar</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>8664B890A0749AA41980388D2950E75515538604</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ShowCar_0402</string>
 		</dict>
 	</array>
 </dict>

@@ -11,6 +11,7 @@
 #import "PersonalAnliCell.h"
 
 #import "UserInfo.h"
+#import "AnliModel.h"
 
 @interface PersonalViewController ()<RefreshDelegate,UITableViewDataSource>
 {
@@ -119,14 +120,30 @@
                              @"ps":[NSNumber numberWithInt:10]
                              };
     
-    __weak typeof(self)weakSelf = self;
+//    __weak typeof(self)weakSelf = self;
     __weak typeof(_table)weakTable = _table;
     
     [LTools getRequestWithBaseUrl:baseurl parameters:params completion:^(NSDictionary *result, NSError *erro){
         
             NSDictionary *dataInfo = result[@"datainfo"];
-            
+        NSArray *data = dataInfo[@"data"];
         
+        int total = [dataInfo[@"total"]intValue];
+        
+        if ([data isKindOfClass:[NSArray class]]) {
+            
+            NSMutableArray *temp_arr = [NSMutableArray arrayWithCapacity:data.count];
+            
+            for (NSDictionary *aDic in data) {
+                
+                AnliModel *aModel = [[AnliModel alloc]initWithDictionary:aDic];
+                
+                [temp_arr addObject:aModel];
+            }
+            
+            [weakTable reloadData:temp_arr total:total];
+            
+        }
         
     } failBlock:^(NSDictionary *result, NSError *erro) {
         
@@ -173,6 +190,8 @@
     if (!cell) {
         cell = [[[NSBundle mainBundle]loadNibNamed:@"PersonalAnliCell" owner:self options:nil]lastObject];
     }
+    AnliModel *aModel = [_table.dataArray objectAtIndex:indexPath.row - 1];
+    [cell setCellWithModel:aModel];
     
     return cell;
     

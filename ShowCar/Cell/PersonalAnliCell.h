@@ -14,4 +14,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *zanNum_label;
 @property (strong, nonatomic) IBOutlet UILabel *commentNum_label;
 
+-(void)setCellWithModel:(id)aModel;
+
 @end

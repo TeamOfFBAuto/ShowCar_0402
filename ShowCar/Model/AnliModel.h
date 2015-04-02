@@ -22,7 +22,15 @@
 @property (nonatomic,retain)NSString *sname;//关联店铺名称
 @property (nonatomic,retain)NSString *spichead;//关联店铺logo
 
+@property (nonatomic,retain)NSString *com_num;
+@property (nonatomic,retain)NSString *content;
+@property (nonatomic,retain)NSString *isdel;
+@property (nonatomic,retain)NSString *tpltype;//案例类型
+@property (nonatomic,retain)NSString *username;
+
+
 //返回数据(
 //id : 案例ID；province:省;city:市;brand:品牌;models:车系; dateline：发布时间；
+
 
 @end

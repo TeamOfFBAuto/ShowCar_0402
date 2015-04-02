@@ -15,7 +15,7 @@
     // Initialization code
     
     self.iconImageVIew.layer.cornerRadius = 140/2.f;
-    self.iconImageVIew.backgroundColor = [UIColor orangeColor];
+    self.iconImageVIew.backgroundColor = [UIColor whiteColor];
     self.iconImageVIew.clipsToBounds = YES;
 }
 

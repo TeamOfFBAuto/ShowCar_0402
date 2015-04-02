@@ -7,6 +7,7 @@
 //
 
 #import "PersonalAnliCell.h"
+#import "AnliModel.h"
 
 @implementation PersonalAnliCell
 
@@ -18,6 +19,15 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+-(void)setCellWithModel:(AnliModel *)aModel
+{
+    
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:aModel.pichead] placeholderImage:nil];
+    self.contentLabel.text = aModel.content;
+    self.zanNum_label.text = @"10";
+    self.commentNum_label.text = @"20";
 }
 
 @end
