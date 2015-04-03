@@ -43,7 +43,10 @@ install_resource()
       ;;
   esac
 }
-
+          install_resource "Baidu-Maps-iOS-SDK/mapapi.bundle"
+                    install_resource "RongCloudIMKit/iOS_IMKit_v_1_3_4/RongCloud.bundle"
+                    install_resource "UMengFeedback/UMFeedback_iOS_1.4.2/umFeedback.bundle"
+          
 rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${CONFIGURATION_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"
 if [[ "${ACTION}" == "install" ]]; then
   rsync -avr --copy-links --no-relative --exclude '*/.svn/*' --files-from="$RESOURCES_TO_COPY" / "${INSTALL_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

@@ -24,6 +24,8 @@
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
 #import "JSONKit.h"
+#import "UIViewAdditions.h"
+#import "RCIM.h"
 
 #import "RefreshTableView.h"
 #import "UIKit+AFNetworking.h"

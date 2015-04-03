@@ -125,6 +125,7 @@
                 <outlet property="contentLabel" destination="rNB-0i-WnB" id="j4y-2c-gv4"/>
                 <outlet property="firstNum_label" destination="EdG-Sd-6F2" id="bd0-be-P4Q"/>
                 <outlet property="iconImageVIew" destination="cT7-AU-VH8" id="igA-ak-5Kw"/>
+                <outlet property="messageButton" destination="x9k-tH-rHI" id="aac-FF-eXn"/>
                 <outlet property="nameLabel" destination="wza-xQ-L4X" id="pqA-9x-V8u"/>
                 <outlet property="secondNum_label" destination="Zwi-3D-jHD" id="YhT-Ir-cN4"/>
                 <outlet property="thirdNum_label" destination="AHy-sA-8hR" id="3va-Tx-Cxb"/>

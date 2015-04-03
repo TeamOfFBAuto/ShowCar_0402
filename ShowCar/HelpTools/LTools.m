@@ -12,6 +12,8 @@
 #import "UIView+Frame.h"
 #import "UIImage+ImageEffects.h"
 
+#import "ChatViewController.h"
+
 @implementation LTools
 {
     NSMutableData *_data;
@@ -414,6 +416,56 @@
     return cacheImage;
 }
 
++(NSString *)returnSmallImageWithUserId:(NSString *)userId
+{
+    NSString * uid = userId;
+    
+    if (uid.length !=0 && uid.length < 9)
+    {
+        for (int i = 0;i < uid.length -9;i++)
+        {
+            uid = [NSString stringWithFormat:@"%d%@",0,uid];
+        }
+    }
+    
+    NSString * string;
+    if (uid.length ==0)
+    {
+        string = @"";
+    }else
+    {
+        string =  [NSString stringWithFormat:@"http://avatar.fblife.com/%@/%@/%@/%@_avatar_small.jpg",[[uid substringToIndex:3] substringFromIndex:0],[[uid substringToIndex:5] substringFromIndex:3],[[uid substringToIndex:7] substringFromIndex:5],[[uid substringToIndex:9] substringFromIndex:7]];
+    }
+    
+    return string;
+}
+
++(NSString *)returnMiddleImageWithUserId:(NSString *)userId
+{
+    NSString * uid = userId;
+    
+    if (uid.length !=0 && uid.length < 9)
+    {
+        for (int i = 0;i < uid.length -9;i++)
+        {
+            uid = [NSString stringWithFormat:@"%d%@",0,uid];
+        }
+    }
+    
+    NSString * string;
+    if (uid.length ==0)
+    {
+        string = @"";
+    }else
+    {
+        string =  [NSString stringWithFormat:@"http://avatar.fblife.com/%@/%@/%@/%@_avatar_middle.jpg",[[uid substringToIndex:3] substringFromIndex:0],[[uid substringToIndex:5] substringFromIndex:3],[[uid substringToIndex:7] substringFromIndex:5],[[uid substringToIndex:9] substringFromIndex:7]];
+    }
+    
+    return string;
+}
+
+
+
 #pragma mark - NSUserDefault缓存
 
 //存
@@ -458,6 +510,49 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults boolForKey:key];
 }
+
+#pragma mark - 融云用户数据
+
+//与某人聊天
++ (void)rongCloudChatWithUserId:(NSString *)userId
+                       userName:(NSString *)userName
+                 viewController:(UIViewController *)viewController
+{
+    if ([userId isEqualToString:[GMAPI getUid]]) {
+        
+        [LTools showMBProgressWithText:@"您不能和自己发起会话" addToView:viewController.view];
+        
+        return;
+    }
+    
+    if (userId.length == 0) {
+        [LTools showMBProgressWithText:@"您咨询的对象不存在" addToView:viewController.view];
+        return;
+    }
+    
+    userName = userName.length > 0 ? userName : @"";
+    
+    if ([LTools cacheBoolForKey:USER_IN]) {
+        //已登录成功自己服务器
+        
+        ChatViewController *contact = [[ChatViewController alloc]init];
+        contact.currentTarget = userId;
+        contact.currentTargetName = userName;
+        contact.shopName = userName;
+        contact.portraitStyle = RCUserAvatarCycle;
+        contact.enableSettings = NO;
+        contact.conversationType = ConversationType_PRIVATE;
+        //        contact.enablePOI = NO;
+        [LTools cacheRongCloudUserName:userName forUserId:userId];
+        
+        [viewController.navigationController pushViewController:contact animated:YES];
+        
+    }else
+    {
+        [[NewLogInView loginShareInstance]showLogin];
+    }
+}
+
 
 + (void)cacheRongCloudUserName:(NSString *)userName forUserId:(NSString *)userId
 {

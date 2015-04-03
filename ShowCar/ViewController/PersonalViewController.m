@@ -7,6 +7,10 @@
 //
 
 #import "PersonalViewController.h"
+
+#import "SliderRightSettingViewController.h"
+#import "MessageViewController.h"
+
 #import "PersonalCell.h"
 #import "PersonalAnliCell.h"
 
@@ -24,14 +28,36 @@
 
 @implementation PersonalViewController
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    //判断是否登录
+    
+    if ([self isCurrentUser]) {
+        
+        //说明当前用户
+        
+        if ([self isLogin]) {
+            
+            self.userId = [GMAPI getUid];
+            
+            [self networkForUserInfoWithUserId:self.userId];
+            [self networkForUserShouCang:1];
+        }
+    }
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
     self.myTitle = @"个人中心";
     self.titleLabel.textColor = RGBCOLOR(226, 0, 0);
-    self.rightImageName = @"publish_tianjia";
-    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeNull WithRightButtonType:MyViewControllerRightbuttonTypeOther];
+    self.rightImageName = @"setting_image";
+    self.leftString = @"退出";
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeText WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     //数据展示table
     _table = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 44 - 49 - 20)];
@@ -42,18 +68,20 @@
     _table.separatorStyle = UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_table];
     
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(loginSuccess:) name:NOTIFICATION_LOGIN_SUCCESS object:nil];
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(logout:) name:NOTIFICATION_LOGOUT object:nil];
+    
     loading = [LTools MBProgressWithText:@"数据加载..." addToView:self.view];
     
-    [self networkForUserInfo];
+    //判断是否登录
     
-    [self networkForUserShouCang:1];
-    
-    //登录页面
-    
-    NewLogInView * loginView = [[NewLogInView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];
-    loginView.backgroundColor = [UIColor colorWithPatternImage:[LTools screenShot]];
-    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
-    
+    if (![self isCurrentUser]) {
+        //别人的信息
+        [self networkForUserInfoWithUserId:self.userId];
+        [self networkForUserShouCang:1];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -61,7 +89,112 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    NSLog(@"%s",__FUNCTION__);
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+    _table.refreshDelegate = nil;
+    _table.dataSource = nil;
+    _table = nil;
+}
+
 #pragma mark - 事件处理
+
+- (void)loginSuccess:(NSNotification *)notification
+{
+    if (self.userId.length == 0) {
+        self.userId = [GMAPI getUid];
+    }
+    
+    [self networkForUserInfoWithUserId:self.userId];
+    [self networkForUserShouCang:1];
+}
+
+- (void)logout:(NSNotification *)notification
+{
+    self.userId = @"";
+    _userInfo = nil;
+
+    [_table.dataArray removeAllObjects];
+    [_table loadFail];
+    
+}
+
+/**
+ *  判断是否是当前用户
+ *
+ *  @return result
+ */
+- (BOOL)isCurrentUser
+{
+    if (self.userId.length == 0 || [self.userId isEqualToString:[GMAPI getUid]]) {
+        
+        //说明当前用户
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+//判断登录
+- (BOOL)isLogin
+{
+    if ([LTools cacheBoolForKey:USER_IN] == NO) {
+        
+        //登录页面
+        
+        [[NewLogInView loginShareInstance]showLogin];
+        
+        return NO;
+    }
+    
+    return YES;
+}
+
+/**
+ *  左侧按钮
+ */
+-(void)leftButtonTap:(UIButton *)sender
+{
+    NSLog(@"左侧按钮");
+
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+/**
+ *  右侧按钮
+ */
+
+-(void)rightButtonTap:(UIButton *)sender
+{
+    NSLog(@"点击加号");
+    
+    SliderRightSettingViewController *settings = [[SliderRightSettingViewController alloc]init];
+    settings.hidesBottomBarWhenPushed = YES;
+    [self.navigationController pushViewController:settings animated:YES];
+}
+
+/**
+ *  调整至会话列表(userid为自己) 或者 聊天界面(userid为别人,和别人聊天)
+ *
+ */
+- (void)clickToMessage:(UIButton *)sender{
+    
+    if ([self isCurrentUser]) {
+        
+        MessageViewController *message = [[MessageViewController alloc]init];
+        message.isPush = YES;
+        message.hidesBottomBarWhenPushed = YES;
+        [self.navigationController pushViewController:message animated:YES];
+    }else
+    {
+        //和别人聊天
+        [LTools rongCloudChatWithUserId:self.userId userName:_userInfo.username viewController:self];
+    }
+}
+
 
 - (void)dealUserInfo:(UserInfo *)aModel
 {
@@ -80,12 +213,12 @@
 /**
  *  获取个人信息
  */
-- (void)networkForUserInfo
+- (void)networkForUserInfoWithUserId:(NSString *)user_id
 {
     NSString *baseurl = USERINFO;
     
     NSDictionary *params = @{
-                             @"uid":@"1102017" //固定测试
+                             @"uid":user_id
                              };
     
     __weak typeof(self)weakSelf = self;
@@ -121,7 +254,7 @@
     NSString *baseurl = ANLI_LIST_SHOUCANG;
     
     NSDictionary *params = @{
-                             @"uid":@"1102017" //固定测试
+                             @"uid":self.userId //固定测试
                              ,@"page":[NSNumber numberWithInt:page],
                              @"ps":[NSNumber numberWithInt:10]
                              };
@@ -186,6 +319,8 @@
         }
         
         [cell setCellWithModel:_userInfo];
+        
+        [cell.messageButton addTarget:self action:@selector(clickToMessage:) forControlEvents:UIControlEventTouchUpInside];
         
         return cell;
     }

@@ -32,6 +32,44 @@
     PrivacyPolicyView * ppv;
 }
 
++ (id)loginShareInstance
+{
+    static NewLogInView *login = nil;
+    static dispatch_once_t once_t;
+    
+    dispatch_once(&once_t, ^{
+        
+        login = [[NewLogInView alloc]init];
+        
+    });
+    
+    return login;
+}
+
+- (void)showLogin
+{
+    //登录页面
+    
+    NewLogInView * loginView = [[NewLogInView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];;
+    loginView.backgroundColor = [UIColor colorWithPatternImage:[LTools screenShot]];
+    [[UIApplication sharedApplication].keyWindow addSubview:loginView];
+}
+
+//-(id)init
+//{
+//    self = [super init];
+//    if (self)
+//    {
+//        UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];
+//        aView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
+//        [self addSubview:aView];
+//        
+//        [self setup];
+//        
+//        [self createLoginView];
+//    }
+//    return self;
+//}
 
 
 -(id)initWithFrame:(CGRect)frame
@@ -827,21 +865,23 @@
         if ([[result objectForKey:@"errcode"] intValue] == 0) {//登录成功
             
             
-            NSDictionary *datainfo = [result objectForKey:@"datainfo"];
-            NSString *userid = [datainfo objectForKey:@"uid"];
-            NSString *username = [datainfo objectForKey:@"username"];
-            NSString *authkey = [datainfo objectForKey:@"authkey"];
-            NSString *authkey_gbk = [datainfo objectForKey:@"authkey_gbk"];
-            [GMAPI cache:userid ForKey:USER_UID];
-            [GMAPI cache:username ForKey:USER_NAME];
-            [GMAPI cache:authkey ForKey:USER_AUTHOD];
-            [GMAPI cache:authkey_gbk ForKey:USER_AUTHKEY_GBK];
-            userInfo_dic = [NSDictionary dictionaryWithDictionary:result];
+//            NSDictionary *datainfo = [result objectForKey:@"datainfo"];
+//            NSString *userid = [datainfo objectForKey:@"uid"];
+//            NSString *username = [datainfo objectForKey:@"username"];
+//            NSString *authkey = [datainfo objectForKey:@"authkey"];
+//            NSString *authkey_gbk = [datainfo objectForKey:@"authkey_gbk"];
+//            [GMAPI cache:userid ForKey:USER_UID];
+//            [GMAPI cache:username ForKey:USER_NAME];
+//            [GMAPI cache:authkey ForKey:USER_AUTHOD];
+//            [GMAPI cache:authkey_gbk ForKey:USER_AUTHKEY_GBK];
+//            userInfo_dic = [NSDictionary dictionaryWithDictionary:result];
+            
+            [bself saveUserInfomation:result];
             
             ///验证是否开通fb
 //            [bself checkFBState];
             
-            [bself getRoncloudLoginToken];
+//            [bself getRoncloudLoginToken];
             
         }else
         {
@@ -924,19 +964,22 @@
 
 
 #pragma mark - 登陆成功保存用户信息
--(void)saveUserInfomation
+-(void)saveUserInfomation:(NSDictionary *)result
 {
-    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];
+    [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];//标识登录成功
     
-    NSDictionary *datainfo = [userInfo_dic objectForKey:@"datainfo"];
+    NSDictionary *datainfo = [result objectForKey:@"datainfo"];
     NSString *userid = [datainfo objectForKey:@"uid"];
     NSString *username = [datainfo objectForKey:@"username"];
     NSString *authkey = [datainfo objectForKey:@"authkey"];
+    NSString *authkey_gbk = [datainfo objectForKey:@"authkey_gbk"];
     [LTools cache:userid ForKey:USER_UID];
     [LTools cache:username ForKey:USER_NAME];
     [LTools cache:authkey ForKey:USER_AUTHOD];
+    [LTools cache:authkey_gbk ForKey:USER_AUTHKEY_GBK];
+
     
-    [[NSNotificationCenter defaultCenter]postNotificationName:@"gdengluchenggong" object:nil];
+    [[NSNotificationCenter defaultCenter]postNotificationName:NOTIFICATION_LOGIN_SUCCESS object:nil];
     
     [self closeTap:nil];
 }

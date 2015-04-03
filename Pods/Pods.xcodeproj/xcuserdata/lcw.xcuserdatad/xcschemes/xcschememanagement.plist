@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-Baidu-Maps-iOS-SDK.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-FMDB.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,7 +24,22 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-RongCloudIMKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-SDWebImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-UMeng.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-UMengFeedback.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -32,27 +52,47 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1776198A862AA0E95115882B</key>
+		<key>05365814A61A904D84380280</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>4610F46DF37E8BC8A54B974C</key>
+		<key>2BB3E53BA98DFAC514F10E47</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C0B13E079EA182B011565D3D</key>
+		<key>40E1006454E3E7C05687229A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CA3B668656BFC7E89F578B50</key>
+		<key>A2BBB6B84FAA0945C78763D5</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>FAF9A2C41AE27C17BF18736D</key>
+		<key>BA46CC0A21D75ED7DC7B6DDD</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CAF642D36E6CFEAEBD4687C4</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D038810E860F6B66A06B5725</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D4F4F3B4FD56AC6504F5DF25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F1343A63EAA4C5D1CDC4E0FC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

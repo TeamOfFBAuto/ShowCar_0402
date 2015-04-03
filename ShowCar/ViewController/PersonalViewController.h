@@ -13,4 +13,6 @@
 
 @interface PersonalViewController : BaseViewController
 
+@property(nonatomic,retain)NSString *userId;//进入此页用户id
+
 @end

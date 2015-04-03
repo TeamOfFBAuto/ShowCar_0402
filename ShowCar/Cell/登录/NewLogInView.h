@@ -68,5 +68,9 @@
 //密码
 @property(nonatomic,strong)UITextField * info_password_tf;
 
++ (id)loginShareInstance;
+
+- (void)showLogin;//显示登录
+
 
 @end

@@ -10,5 +10,7 @@
 #define ShowCar_ImageHeader_h
 
 #define DEFAULT_IMAGE_BACK [UIImage imageNamed:@"fanhui"]
+#define IOS7DAOHANGLANBEIJING_PUSH @"navgationBar_background_image.png"
+
 
 #endif

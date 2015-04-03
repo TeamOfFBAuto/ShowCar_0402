@@ -19,7 +19,13 @@ alpha:(a)]
 #define RGBCOLOR_ONE RGBCOLOR(arc4random()%255, arc4random()%255, arc4random()%255)
 
 
+//app当前版本
+#define NOW_VERSION [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleVersion"]
+
 //=============== 标识宏定义 =======================
+
+#define MY_MACRO_NAME ([[[UIDevice currentDevice] systemVersion] floatValue] >= 7.0)
+
 
 #define USER_IN @"user_in" //0是未登陆  1是已登陆
 #define USER_NAME @"username"
@@ -31,11 +37,15 @@ alpha:(a)]
 #define DEVICETOKEN @"pushdevicetoken"
 
 
-//测试用户数据
+#define NOTIFICATION_LOGIN_SUCCESS @"login_success"//登录成功通知
 
-//    code = 200;
-//    token = "lyFRunzs3PaA3CISZS0aaBnqT+dTwf/fgmwmoyWNvQlL4qjs1QOcHf1ot6Dvp8DF7RDf6L/sLQ3Aw1VNNAi6SQ==";
-//    userId = 1102017;
+#define NOTIFICATION_LOGOUT @"logout"//退出登录通知
+
+#define RONGCLOUD_LOGIN_STATE @"rongcloudLoginState"
+#define RONGCLOUD_TOKEN @"rongcloudToken"//融云token
+
+//token
+#define RONCLOUD_GET_TOKEN @"http://cool.fblife.com/gettoken.php?uid=%@&name=%@&photo=%@"//获取融云 token
 
 
 //接口======
@@ -48,6 +58,7 @@ alpha:(a)]
 
 //获取个人信息 &uid=%@
 #define USERINFO @"http://cool.fblife.com/index.php?c=interface&a=getUser&fbtype=json"
+
 
 //登录
 #define LOGIN @"http://cool.fblife.com/index.php?c=interface&a=dologin&fbtype=json"

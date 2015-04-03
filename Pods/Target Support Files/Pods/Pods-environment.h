@@ -48,6 +48,12 @@
 #define COCOAPODS_VERSION_MINOR_AFNetworking_UIKit 5
 #define COCOAPODS_VERSION_PATCH_AFNetworking_UIKit 2
 
+// Baidu-Maps-iOS-SDK
+#define COCOAPODS_POD_AVAILABLE_Baidu_Maps_iOS_SDK
+#define COCOAPODS_VERSION_MAJOR_Baidu_Maps_iOS_SDK 2
+#define COCOAPODS_VERSION_MINOR_Baidu_Maps_iOS_SDK 6
+#define COCOAPODS_VERSION_PATCH_Baidu_Maps_iOS_SDK 0
+
 // FMDB
 #define COCOAPODS_POD_AVAILABLE_FMDB
 #define COCOAPODS_VERSION_MAJOR_FMDB 2
@@ -72,6 +78,12 @@
 #define COCOAPODS_VERSION_MINOR_MBProgressHUD 9
 #define COCOAPODS_VERSION_PATCH_MBProgressHUD 1
 
+// RongCloudIMKit
+#define COCOAPODS_POD_AVAILABLE_RongCloudIMKit
+#define COCOAPODS_VERSION_MAJOR_RongCloudIMKit 1
+#define COCOAPODS_VERSION_MINOR_RongCloudIMKit 3
+#define COCOAPODS_VERSION_PATCH_RongCloudIMKit 4
+
 // SDWebImage
 #define COCOAPODS_POD_AVAILABLE_SDWebImage
 #define COCOAPODS_VERSION_MAJOR_SDWebImage 3
@@ -83,4 +95,17 @@
 #define COCOAPODS_VERSION_MAJOR_SDWebImage_Core 3
 #define COCOAPODS_VERSION_MINOR_SDWebImage_Core 7
 #define COCOAPODS_VERSION_PATCH_SDWebImage_Core 2
+
+// UMeng
+#define COCOAPODS_POD_AVAILABLE_UMeng
+#define COCOAPODS_VERSION_MAJOR_UMeng 2
+#define COCOAPODS_VERSION_MINOR_UMeng 2
+#define COCOAPODS_VERSION_PATCH_UMeng 1
+
+// UMengFeedback
+#define COCOAPODS_POD_AVAILABLE_UMengFeedback
+// This library does not follow semantic-versioning,
+// so we were not able to define version macros.
+// Please contact the author.
+// Version: 1.4.2.1.
 

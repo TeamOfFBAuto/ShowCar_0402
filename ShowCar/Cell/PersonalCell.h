@@ -16,6 +16,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *firstNum_label;
 @property (strong, nonatomic) IBOutlet UILabel *secondNum_label;
 @property (strong, nonatomic) IBOutlet UILabel *thirdNum_label;
+@property (strong, nonatomic) IBOutlet UIButton *messageButton;
 
 - (void)setCellWithModel:(id)aModel;
 

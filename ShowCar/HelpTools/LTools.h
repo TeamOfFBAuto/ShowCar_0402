@@ -40,7 +40,7 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 
 +(UIImage *)screenShot;
 
-
+//基于 AFNetWorking
 + (void)getRequestWithBaseUrl:(NSString *)baseUrl
                    parameters:(NSDictionary *)paramsDic
                    completion:(void(^)(NSDictionary *result,NSError *erro))completionBlock
@@ -64,6 +64,11 @@ typedef void(^versionBlock)(BOOL isNewVersion,NSString *updateUrl,NSString *upda
 + (void)versionForAppid:(NSString *)appid Block:(void(^)(BOOL isNewVersion,NSString *updateUrl,NSString *updateContent))version;//是否有新版本、新版本更新下地址
 
 + (UIImage *)sd_imageForUrl:(NSString *)url;
+
+///根据uid返回论坛中头像
++(NSString *)returnSmallImageWithUserId:(NSString *)userId;
+///根据uid返回论坛中头像
++(NSString *)returnMiddleImageWithUserId:(NSString *)userId;
 
 /**
  *  NSUserDefault 缓存
