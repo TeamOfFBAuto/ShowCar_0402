@@ -25,6 +25,8 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
     // Do any additional setup after loading the view.
     
     [self prepareItems];
+    
+//    self.delegate = self;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -49,14 +51,14 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
     
     self.viewControllers = [NSArray arrayWithArray:items];
     
-    CGSize tabbarSize = self.tabBar.frame.size;
+//    CGSize tabbarSize = self.tabBar.frame.size;
     
     CGSize allSize = [UIScreen mainScreen].applicationFrame.size;
     
-    CGFloat aWidth = allSize.width / 5;
+//    CGFloat aWidth = allSize.width / 5;
     
-    NSArray *normalImages = @[@"home_fenlei",@"home_zhaoxiang",@"weixin72_72"];
-    NSArray *selectedImages = @[@"home_fenlei",@"home_zhaoxiang",@"weixin72_72"];
+    NSArray *normalImages = @[@"homepage_uncheck",@"homepage_publish_uncheck",@"homepage_personal_uncheck"];
+    NSArray *selectedImages = @[@"homepage_check",@"homepage_publish_check",@"homepage_personal_check"];
     
     for (int i = 0; i < 3; i ++) {
         
@@ -79,15 +81,15 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
             //上 左 下 右
             [item setImageInsets:UIEdgeInsetsMake(5, 0, -5, 0)];
             
-            UIButton *center = [UIButton buttonWithType:UIButtonTypeCustom];
-            center.frame = CGRectMake(0, 0, aWidth, tabbarSize.height);
-            [self.tabBar addSubview:center];
-            center.backgroundColor = [UIColor clearColor];
-            center.center = CGPointMake(DEVICE_WIDTH/2.f, center.center.y);
-            center.tag = 102;
-            [center setImage:[UIImage imageNamed:normalImages[1]] forState:UIControlStateNormal];
-            [center setImage:[UIImage imageNamed:selectedImages[1]] forState:UIControlStateSelected];
-            [center addTarget:self action:@selector(clickToSelectForIndex:) forControlEvents:UIControlEventTouchUpInside];
+//            UIButton *center = [UIButton buttonWithType:UIButtonTypeCustom];
+//            center.frame = CGRectMake(0, 0, aWidth, tabbarSize.height);
+//            [self.tabBar addSubview:center];
+//            center.backgroundColor = [UIColor clearColor];
+//            center.center = CGPointMake(DEVICE_WIDTH/2.f, center.center.y);
+//            center.tag = 102;
+//            [center setImage:[UIImage imageNamed:normalImages[1]] forState:UIControlStateNormal];
+//            [center setImage:[UIImage imageNamed:selectedImages[1]] forState:UIControlStateSelected];
+//            [center addTarget:self action:@selector(clickToSelectForIndex:) forControlEvents:UIControlEventTouchUpInside];
 //        }
     }
     
@@ -97,7 +99,7 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
      [NSDictionary dictionaryWithObjectsAndKeys:[UIColor colorWithHexString:@"dc4b6c"],                                                                                                              NSForegroundColorAttributeName, nil] forState:UIControlStateSelected];
     
 //    self.tabBar.backgroundColor = [UIColor redColor];
-//    self.tabBar.backgroundImage = [UIImage imageNamed:@"home_beijing"];
+    self.tabBar.backgroundImage = [UIImage imageNamed:@"home_tiao"];
 }
 
 
@@ -145,11 +147,16 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
 
 #pragma mark - UITabBarControllerDelegate
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
-{
-    NSLog(@"--> %d  %@",(int)tabBarController.selectedIndex,viewController);
-    
-}
+//- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController
+//{
+//    NSLog(@"--> %d  %@",(int)tabBarController.selectedIndex,viewController);
+//    
+//    if (tabBarController.selectedIndex == 1) {
+//        [self showMenu];
+//    }
+//    
+//}
+
 
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {

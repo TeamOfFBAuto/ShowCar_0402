@@ -56,8 +56,8 @@
     self.myTitle = @"个人中心";
     self.titleLabel.textColor = RGBCOLOR(226, 0, 0);
     self.rightImageName = @"setting_image";
-    self.leftString = @"退出";
-    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeText WithRightButtonType:MyViewControllerRightbuttonTypeOther];
+//    self.leftString = @"退出";
+    [self setMyViewControllerLeftButtonType:MyViewControllerLeftbuttonTypeNull WithRightButtonType:MyViewControllerRightbuttonTypeOther];
     
     //数据展示table
     _table = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 44 - 49 - 20)];
