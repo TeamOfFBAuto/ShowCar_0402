@@ -30,6 +30,7 @@
 @implementation NewLogInView
 {
     PrivacyPolicyView * ppv;
+    
 }
 
 + (id)loginShareInstance
@@ -54,22 +55,6 @@
     loginView.backgroundColor = [UIColor colorWithPatternImage:[LTools screenShot]];
     [[UIApplication sharedApplication].keyWindow addSubview:loginView];
 }
-
-//-(id)init
-//{
-//    self = [super init];
-//    if (self)
-//    {
-//        UIView * aView = [[UIView alloc] initWithFrame:CGRectMake(0,0,DEVICE_WIDTH,DEVICE_HEIGHT)];
-//        aView.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.3];
-//        [self addSubview:aView];
-//        
-//        [self setup];
-//        
-//        [self createLoginView];
-//    }
-//    return self;
-//}
 
 
 -(id)initWithFrame:(CGRect)frame
@@ -874,14 +859,15 @@
 //            [GMAPI cache:username ForKey:USER_NAME];
 //            [GMAPI cache:authkey ForKey:USER_AUTHOD];
 //            [GMAPI cache:authkey_gbk ForKey:USER_AUTHKEY_GBK];
-//            userInfo_dic = [NSDictionary dictionaryWithDictionary:result];
             
-            [bself saveUserInfomation:result];
+            userInfo_dic = [NSDictionary dictionaryWithDictionary:result];
+            
+//            [bself saveUserInfomation:result];
             
             ///验证是否开通fb
 //            [bself checkFBState];
             
-//            [bself getRoncloudLoginToken];
+            [bself getRoncloudLoginToken];
             
         }else
         {
@@ -913,62 +899,60 @@
 
 - (void)getRoncloudLoginToken
 {
-//    NSString *userId = [GMAPI getUid];
-//    NSString *userName = [GMAPI getUsername];
-//    NSString *headImage = [LTools returnMiddleUrl:[GMAPI getUid]];
-//    
-//    NSString *url = [NSString stringWithFormat:RONCLOUD_GET_TOKEN,userId,userName,headImage];
-//    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
-//    [tool requestCompletion:^(NSDictionary *result, NSError *erro) {
-//        
-//        NSLog(@"result %@",result);
-//        
-//        [LTools cache:result[@"token"] ForKey:RONGCLOUD_TOKEN];
-//        
-//        [self rongCloudDefaultLoginWithToken:result[@"token"]];
-//        
-//        
-//    } failBlock:^(NSDictionary *result, NSError *erro) {
-//        [hud hide:YES];
-//        loginButton.userInteractionEnabled = YES;
-//        NSLog(@"获取融云token失败 %@",result);
-//        
-//        [LTools showMBProgressWithText:result[ERROR_INFO] addToView:self];
-//    }];
+    NSString *userId = [GMAPI getUid];
+    NSString *userName = [GMAPI getUsername];
+    NSString *headImage = [LTools returnMiddleImageWithUserId:[GMAPI getUid]];
+    
+    NSString *url = [NSString stringWithFormat:RONCLOUD_GET_TOKEN,userId,userName,headImage];
+    LTools *tool = [[LTools alloc]initWithUrl:url isPost:NO postData:nil];
+    [tool requestCompletion:^(NSDictionary *result, NSError *erro) {
+        
+        NSLog(@"result %@",result);
+        
+        [LTools cache:result[@"token"] ForKey:RONGCLOUD_TOKEN];
+        
+        [self rongCloudDefaultLoginWithToken:result[@"token"]];
+        
+        
+    } failBlock:^(NSDictionary *result, NSError *erro) {
+        [hud hide:YES];
+        loginButton.userInteractionEnabled = YES;
+        NSLog(@"获取融云token失败 %@",result);
+        
+        [LTools showMBProgressWithText:result[ERROR_INFO] addToView:self];
+    }];
 }
 
 - (void)rongCloudDefaultLoginWithToken:(NSString *)loginToken
 {
     
-    //默认测试
-    
-//    if (loginToken.length > 0) {
-//        
-//        
-//        __weak typeof(self)weakSelf = self;
-//        [RCIM connectWithToken:loginToken completion:^(NSString *userId) {
-//            [hud hide:YES];
-//            loginButton.userInteractionEnabled = YES;
-//            NSLog(@"------> rongCloud 登陆成功 %@",userId);
-//            
-//            [weakSelf saveUserInfomation];
-//            
-//        } error:^(RCConnectErrorCode status) {
-//            [hud hide:YES];
-//            NSLog(@"------> rongCloud 登陆失败 %d",(int)status);
-//            loginButton.userInteractionEnabled = YES;
-//            [LTools showMBProgressWithText:@"rongCloud登录失败" addToView:self];
-//        }];
-//    }
+    if (loginToken.length > 0) {
+        
+        
+        __weak typeof(self)weakSelf = self;
+        [RCIM connectWithToken:loginToken completion:^(NSString *userId) {
+            [hud hide:YES];
+            loginButton.userInteractionEnabled = YES;
+            NSLog(@"------> rongCloud 登陆成功 %@",userId);
+            
+            [weakSelf saveUserInfomation];
+            
+        } error:^(RCConnectErrorCode status) {
+            [hud hide:YES];
+            NSLog(@"------> rongCloud 登陆失败 %d",(int)status);
+            loginButton.userInteractionEnabled = YES;
+            [LTools showMBProgressWithText:@"rongCloud登录失败" addToView:self];
+        }];
+    }
 }
 
 
 #pragma mark - 登陆成功保存用户信息
--(void)saveUserInfomation:(NSDictionary *)result
+-(void)saveUserInfomation
 {
     [[NSUserDefaults standardUserDefaults] setBool:YES forKey:USER_IN];//标识登录成功
     
-    NSDictionary *datainfo = [result objectForKey:@"datainfo"];
+    NSDictionary *datainfo = [userInfo_dic objectForKey:@"datainfo"];
     NSString *userid = [datainfo objectForKey:@"uid"];
     NSString *username = [datainfo objectForKey:@"username"];
     NSString *authkey = [datainfo objectForKey:@"authkey"];

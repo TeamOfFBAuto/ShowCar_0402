@@ -13,6 +13,7 @@
 
 @interface PersonalViewController : BaseViewController
 
+@property(nonatomic,assign)BOOL isOther;//是否是push过来得
 @property(nonatomic,retain)NSString *userId;//进入此页用户id
 
 @end

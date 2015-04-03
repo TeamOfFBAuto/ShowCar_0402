@@ -29,9 +29,9 @@
 
 - (void)setCellWithModel:(AnliModel *)aModel
 {
-    [self.bigImageView setImageWithURL:[NSURL URLWithString:aModel.pichead] placeholderImage:nil];
+    [self.bigImageView sd_setImageWithURL:[NSURL URLWithString:aModel.pichead] placeholderImage:nil];
     self.contentLabel.text = aModel.sname;
-    [self.iconImageView setImageWithURL:[NSURL URLWithString:aModel.spichead] placeholderImage:nil];
+    [self.iconImageView sd_setImageWithURL:[NSURL URLWithString:aModel.spichead] placeholderImage:nil];
 }
 
 @end

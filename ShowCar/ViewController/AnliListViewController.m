@@ -7,6 +7,8 @@
 //
 
 #import "AnliListViewController.h"
+
+#import "PersonalViewController.h"
 #import "ListViewCell.h"
 #import "AnliModel.h"
 
@@ -24,6 +26,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.titleLabel.text = @"案例";
     
     //数据展示table
     _table = [[RefreshTableView alloc]initWithFrame:CGRectMake(0, 0, DEVICE_WIDTH, DEVICE_HEIGHT - 44 - 49 - 20)];
@@ -43,6 +47,29 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - 事件处理
+/**
+ *  调整至个人主页
+ *
+ */
+- (void)clickToUserPage:(UIButton *)sender
+{
+    AnliModel *aModel =  [_table.dataArray objectAtIndex:sender.tag - 1000];
+    
+    PersonalViewController *personal = [[PersonalViewController alloc]init];
+    
+    personal.userId = aModel.uid;
+    
+    personal.isOther = YES;
+    
+    personal.hidesBottomBarWhenPushed = YES;
+    
+    [self.navigationController pushViewController:personal animated:YES];
+    
+    [self updateViewFrameForShow:YES duration:0];
+
 }
 
 #pragma mark - 网络请求
@@ -83,56 +110,7 @@
         [_table loadFail];
     }];
     
-    
 }
-
-
-//- (void)networkForAnliList:(int)pageNum
-//{
-//    
-//    NSString *baseurl = ANLI_LIST;
-//    
-//    baseurl = [baseurl stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-//    
-//    AFHTTPRequestOperationManager *operation = [[AFHTTPRequestOperationManager alloc]init];
-//    
-//    operation.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/html",@"text/json",@"text/javascript", nil];;
-//                                                 
-//    [operation GET:baseurl parameters:@{
-//                                        @"page":[NSNumber numberWithInt:pageNum],
-//                                        @"ps":[NSNumber numberWithInt:10],
-//                                        @"ordertype":[NSNumber numberWithInt:1],
-//                                        @"id":[NSNumber numberWithInt:0]
-//                                        }success:^(AFHTTPRequestOperation *operation, id responseObject) {
-//                                            
-//                                            NSDictionary *result = [NSJSONSerialization JSONObjectWithData:operation.responseData options:NSJSONReadingAllowFragments error:nil];
-//                                            
-//                                            if ([result isKindOfClass:[NSDictionary class]]) {
-//                                    
-//                                                NSDictionary *dataInfo = result[@"datainfo"];
-//                                    
-//                                                    int total = [dataInfo[@"total"] intValue];
-//                                                    NSArray *data = dataInfo[@"data"];
-//                                                    NSMutableArray *temp_arr = [NSMutableArray arrayWithCapacity:data.count];
-//                                                    for (NSDictionary *aDic in data) {
-//                                                        AnliModel *aModel = [[AnliModel alloc]initWithDictionary:aDic];
-//                                                        [temp_arr addObject:aModel];
-//                                                    }
-//                                                
-//                                                [_table reloadData:temp_arr total:total];
-//                                            }
-//
-//                                            
-//                                        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//                                            
-//                                            NSLog(@"---->response %@",operation.responseString);
-//                                            
-//                                            [_table loadFail];
-//                                            
-//                                        }];
-//    
-//}
-
 
 #pragma mark - UITableViewDataSource
 
@@ -152,6 +130,9 @@
     [cell setCellWithModel:[_table.dataArray objectAtIndex:indexPath.row]];
     cell.bigImageView.height = [self heightFor:252];
     cell.bottomView.bottom = cell.bigImageView.bottom+ 80;
+    
+    cell.userButton.tag = 1000 + indexPath.row;
+    [cell.userButton addTarget:self action:@selector(clickToUserPage:) forControlEvents:UIControlEventTouchUpInside];
     
     return cell;
     
@@ -209,8 +190,6 @@
     __weak typeof(_table)weakTable = _table;
     
     CGFloat oldHeight = DEVICE_HEIGHT - 44 - 49 - 20;
-    
-    //    weakTable.height = show ? oldHeight : self.view.height + 64 + 49;
     
     [UIView animateWithDuration:seconds animations:^{
         
