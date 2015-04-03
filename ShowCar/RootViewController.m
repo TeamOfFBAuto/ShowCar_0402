@@ -11,6 +11,8 @@
 #import "SecondViewController.h"
 #import "PersonalViewController.h"
 
+#import "CameraViewController.h"
+
 
 @interface RootViewController ()
 <UIImagePickerControllerDelegate,
@@ -37,16 +39,24 @@ UINavigationControllerDelegate,UIActionSheetDelegate>
 
 - (void)prepareItems
 {
-    NSArray *classNames = @[@"AnliListViewController",@"UIViewController",@"PersonalViewController"];
+    NSArray *classNames = @[@"AnliListViewController",@"CameraViewController",@"PersonalViewController"];
 //    NSArray *item_names = @[@"案例",@"+",@"个人"];
     NSMutableArray *items = [NSMutableArray arrayWithCapacity:3];
     for (int i = 0; i < 3;i ++) {
         
         NSString *className = classNames[i];
         UIViewController *vc = [[NSClassFromString(className) alloc]init];
-        UINavigationController *unvc = [[UINavigationController alloc]initWithRootViewController:vc];
-        [items addObject:unvc];
         
+        UINavigationController *unvc = [[UINavigationController alloc]initWithRootViewController:vc];
+        
+        if (i == 1) {
+            
+            [items addObject:vc];
+        }else
+        {
+            [items addObject:unvc];
+
+        }
     }
     
     self.viewControllers = [NSArray arrayWithArray:items];
