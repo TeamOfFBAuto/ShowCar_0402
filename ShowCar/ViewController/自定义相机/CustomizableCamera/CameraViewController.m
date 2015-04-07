@@ -119,6 +119,10 @@
         
         // 这里是 ToDo:
         
+        NSLog(@"相册选择完照片");
+        
+        [self goToPublishAnliWithImage:image];
+        
         [self didCancel:nil];
         
         [picker dismissViewControllerAnimated:NO completion:^{
@@ -139,6 +143,17 @@
 
 
 #pragma mark - CameraDelegate
+
+/**
+ *  调转至案例发布页面
+ *
+ *  @param aImage
+ */
+- (void)goToPublishAnliWithImage:(UIImage *)aImage
+{
+    NSLog(@"调转至案例发布页面");
+}
+
 
 -(void)didCancel:(UIButton *)sender
 {
@@ -162,6 +177,9 @@
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
 //    [self.cameraView removeFromSuperview];
     
+    NSLog(@"拍照完照片");
+    
+    [LTools showMBProgressWithText:@"保存至相册!" addToView:self.view];
 }
 
 -(void)didCaptureImageWithData:(NSData *)imageData {

@@ -262,6 +262,13 @@
 {
     NSString *baseurl = ANLI_LIST_SHOUCANG;
     
+    if (self.userId.length == 0) {
+        
+        [_table loadFail];
+        
+        return;
+    }
+    
     NSDictionary *params = @{
                              @"uid":self.userId //固定测试
                              ,@"page":[NSNumber numberWithInt:page],
