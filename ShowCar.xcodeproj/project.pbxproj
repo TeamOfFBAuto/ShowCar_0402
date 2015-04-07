@@ -180,9 +180,6 @@
 		13FA2BE71AC532D300204905 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FA2BE61AC532D300204905 /* BaseViewController.m */; };
 		13FA2BEA1AC5330E00204905 /* AnliListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FA2BE91AC5330E00204905 /* AnliListViewController.m */; };
 		13FA2BEF1AC535E400204905 /* UIView+Frame.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FA2BEE1AC535E400204905 /* UIView+Frame.m */; };
-		13FA2BF41AC5360500204905 /* QQ72_72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13FA2BF11AC5360500204905 /* QQ72_72@2x.png */; };
-		13FA2BF51AC5360500204905 /* weibo90_72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13FA2BF21AC5360500204905 /* weibo90_72@2x.png */; };
-		13FA2BF61AC5360500204905 /* weixin72_72@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13FA2BF31AC5360500204905 /* weixin72_72@2x.png */; };
 		13FA2BFA1AC537CA00204905 /* UIColor+ConvertColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 13FA2BF91AC537CA00204905 /* UIColor+ConvertColor.m */; };
 		13FA2C031AC5433800204905 /* bluedown1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13FA2BFD1AC5433800204905 /* bluedown1@2x.png */; };
 		13FA2C041AC5433800204905 /* blueup1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13FA2BFE1AC5433800204905 /* blueup1@2x.png */; };
@@ -437,9 +434,6 @@
 		13FA2BE91AC5330E00204905 /* AnliListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnliListViewController.m; sourceTree = "<group>"; };
 		13FA2BED1AC535E400204905 /* UIView+Frame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Frame.h"; sourceTree = "<group>"; };
 		13FA2BEE1AC535E400204905 /* UIView+Frame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Frame.m"; sourceTree = "<group>"; };
-		13FA2BF11AC5360500204905 /* QQ72_72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QQ72_72@2x.png"; sourceTree = "<group>"; };
-		13FA2BF21AC5360500204905 /* weibo90_72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weibo90_72@2x.png"; sourceTree = "<group>"; };
-		13FA2BF31AC5360500204905 /* weixin72_72@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "weixin72_72@2x.png"; sourceTree = "<group>"; };
 		13FA2BF81AC537CA00204905 /* UIColor+ConvertColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+ConvertColor.h"; sourceTree = "<group>"; };
 		13FA2BF91AC537CA00204905 /* UIColor+ConvertColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+ConvertColor.m"; sourceTree = "<group>"; };
 		13FA2BFB1AC5397400204905 /* ApiHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApiHeader.h; sourceTree = "<group>"; };
@@ -981,9 +975,6 @@
 				13C3C5F81ACA98FF000FE753 /* 个人中心 */,
 				13C3C5FC1ACA98FF000FE753 /* 首页 */,
 				13C3C6021ACA98FF000FE753 /* 详情页 */,
-				13FA2BF11AC5360500204905 /* QQ72_72@2x.png */,
-				13FA2BF21AC5360500204905 /* weibo90_72@2x.png */,
-				13FA2BF31AC5360500204905 /* weixin72_72@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -1118,7 +1109,6 @@
 				13C3C6161ACA98FF000FE753 /* publish_tianjia@2x.png in Resources */,
 				1361F5911ACD6EBB00C1FBE6 /* logo@2x.png in Resources */,
 				1361F52C1ACD641300C1FBE6 /* emotionImage.plist in Resources */,
-				13FA2BF51AC5360500204905 /* weibo90_72@2x.png in Resources */,
 				1361F5871ACD6EBB00C1FBE6 /* Loginview_agree_xieyi_image@2x.png in Resources */,
 				1361F6641ACEBC6900C1FBE6 /* PaintCodeFile.pcvd in Resources */,
 				1361F5F81ACE71D300C1FBE6 /* about_jieshao_image@3x.png in Resources */,
@@ -1168,7 +1158,6 @@
 				1361F6631ACEBC6900C1FBE6 /* Cool Camera Mockup.sketch in Resources */,
 				13C3C60F1ACA98FF000FE753 /* publish_bofang@2x.png in Resources */,
 				1361F58A1ACD6EBB00C1FBE6 /* LogInView_close@3x.png in Resources */,
-				13FA2BF61AC5360500204905 /* weixin72_72@2x.png in Resources */,
 				1361F5CA1ACE6BC800C1FBE6 /* messages_toolbar_background.png in Resources */,
 				1361F5D31ACE6BC800C1FBE6 /* umeng_logo1.png in Resources */,
 				1361F5DE1ACE6CFF00C1FBE6 /* AboutViewController.xib in Resources */,
@@ -1224,7 +1213,6 @@
 				13C3C6181ACA98FF000FE753 /* publish_wenzi@2x.png in Resources */,
 				13C3C6111ACA98FF000FE753 /* publish_pen-1@2x.png in Resources */,
 				13C3C6201ACA98FF000FE753 /* guanzhu@2x.png in Resources */,
-				13FA2BF41AC5360500204905 /* QQ72_72@2x.png in Resources */,
 				1361F6241ACE7FEC00C1FBE6 /* navgationBar_background_image@2x.png in Resources */,
 				13FA2BDB1AC5329900204905 /* ListViewCell.xib in Resources */,
 			);
