@@ -174,12 +174,20 @@
         
         //TODO:lcw
         
+        //显示最新一张照片
+        UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 50, 50)];
+        [self addSubview:imageView];
+        imageView.center = CGPointMake(50 + 20, _cameraShutter.center.y);
+
+        self.buttonImageView = imageView;
+        
+        //点击调整至相册
         UIButton *test = [UIButton buttonWithType:UIButtonTypeCustom];
-        [test setImage:[UIImage imageNamed:@"albulm"] forState:UIControlStateNormal];
-        test.frame = CGRectMake(0, 0, 50, 50);
+        test.frame = imageView.frame;
         [self addSubview:test];
-        test.center = CGPointMake(50 + 20, _cameraShutter.center.y);
         [test addTarget:self action:@selector(clickToPhotos:) forControlEvents:UIControlEventTouchUpInside];
+        
+        
     }
     
     //Create the top bar and add the buttons to it

@@ -34,18 +34,7 @@
     
     //判断是否登录
     
-    if ([self isCurrentUser]) {
-        
-        //说明当前用户
-        
-        if ([self isLogin]) {
-            
-            self.userId = [GMAPI getUid];
-            
-            [self networkForUserInfoWithUserId:self.userId];
-            [self networkForUserShouCang:1];
-        }
-    }
+    if ([self isCurrentUser] && [self isLogin]) self.userId = [GMAPI getUid];
     
 }
 
@@ -84,13 +73,19 @@
     
     loading = [LTools MBProgressWithText:@"数据加载..." addToView:self.view];
     
-    //判断是否登录
     
-    if (![self isCurrentUser]) {
-        //别人的信息
-        [self networkForUserInfoWithUserId:self.userId];
-        [self networkForUserShouCang:1];
+    NSString *temp_userId;
+    if ([self isCurrentUser]) {
+        
+        temp_userId = self.userId = [GMAPI getUid];
+        
+    }else
+    {
+        temp_userId = self.userId;
     }
+    
+    [self networkForUserInfoWithUserId:temp_userId];
+    [self networkForUserShouCang:1];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -270,7 +265,7 @@
     }
     
     NSDictionary *params = @{
-                             @"uid":self.userId //固定测试
+                             @"uid":self.userId
                              ,@"page":[NSNumber numberWithInt:page],
                              @"ps":[NSNumber numberWithInt:10]
                              };

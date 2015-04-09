@@ -9,7 +9,12 @@
 #import "CameraViewController.h"
 #import "CameraSessionView.h"
 
+#import "LPhotoTool.h"
+
 @interface CameraViewController () <CACameraSessionDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+{
+    UIImageView *_aImageView;//图片容器
+}
 
 @property (nonatomic, strong) CameraSessionView *cameraView;
 
@@ -32,6 +37,11 @@
     self.tabBarController.tabBar.hidden = YES;
     
     [[UIApplication sharedApplication]setStatusBarHidden:YES];
+    
+    //显示最新照片
+    
+    [[LPhotoTool LPhotoInstance] showLastImageForImageView:self.cameraView.buttonImageView];
+
 }
 
 -(void)viewWillDisappear:(BOOL)animated
@@ -175,11 +185,10 @@
 -(void)didCaptureImage:(UIImage *)image {
     NSLog(@"CAPTURED IMAGE");
     UIImageWriteToSavedPhotosAlbum(image, self, @selector(image:didFinishSavingWithError:contextInfo:), nil);
-//    [self.cameraView removeFromSuperview];
     
     NSLog(@"拍照完照片");
     
-    [LTools showMBProgressWithText:@"保存至相册!" addToView:self.view];
+//    [LTools showMBProgressWithText:@"保存至相册!" addToView:self.view];
 }
 
 -(void)didCaptureImageWithData:(NSData *)imageData {
@@ -193,6 +202,11 @@
 {
     //Show error alert if image could not be saved
     if (error) [[[UIAlertView alloc] initWithTitle:@"Error!" message:@"Image couldn't be saved" delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil, nil] show];
+    
+    //显示最新照片
+    
+    [[LPhotoTool LPhotoInstance] showLastImageForImageView:self.cameraView.buttonImageView];
+
 }
 
 

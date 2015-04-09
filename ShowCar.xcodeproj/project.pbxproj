@@ -136,6 +136,7 @@
 		13685A4D1AC1408F00E5873E /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13685A4C1AC1408F00E5873E /* RootViewController.m */; };
 		136B00951AC501AF002E7FF4 /* BaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 136B00921AC501AF002E7FF4 /* BaseModel.m */; };
 		136B00961AC501AF002E7FF4 /* AnliModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 136B00941AC501AF002E7FF4 /* AnliModel.m */; };
+		13B6668B1AD5184B00B39A31 /* LPhotoTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B6668A1AD5184B00B39A31 /* LPhotoTool.m */; };
 		13C3C5E61ACA970C000FE753 /* PersonalViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 13C3C5E51ACA970C000FE753 /* PersonalViewController.m */; };
 		13C3C60D1ACA98FF000FE753 /* fanhui@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3C5E81ACA98FF000FE753 /* fanhui@2x.png */; };
 		13C3C60E1ACA98FF000FE753 /* publish_bofang-1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 13C3C5E91ACA98FF000FE753 /* publish_bofang-1@2x.png */; };
@@ -379,6 +380,8 @@
 		136B00921AC501AF002E7FF4 /* BaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseModel.m; sourceTree = "<group>"; };
 		136B00931AC501AF002E7FF4 /* AnliModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AnliModel.h; sourceTree = "<group>"; };
 		136B00941AC501AF002E7FF4 /* AnliModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AnliModel.m; sourceTree = "<group>"; };
+		13B666891AD5184B00B39A31 /* LPhotoTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LPhotoTool.h; sourceTree = "<group>"; };
+		13B6668A1AD5184B00B39A31 /* LPhotoTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LPhotoTool.m; sourceTree = "<group>"; };
 		13C3C5E31ACA9607000FE753 /* ImageHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageHeader.h; sourceTree = "<group>"; };
 		13C3C5E41ACA970C000FE753 /* PersonalViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalViewController.h; sourceTree = "<group>"; };
 		13C3C5E51ACA970C000FE753 /* PersonalViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalViewController.m; sourceTree = "<group>"; };
@@ -666,6 +669,8 @@
 			isa = PBXGroup;
 			children = (
 				1361F63C1ACEBC6900C1FBE6 /* CustomizableCamera */,
+				13B666891AD5184B00B39A31 /* LPhotoTool.h */,
+				13B6668A1AD5184B00B39A31 /* LPhotoTool.m */,
 			);
 			path = "自定义相机";
 			sourceTree = "<group>";
@@ -1320,6 +1325,7 @@
 				1361F5301ACD641300C1FBE6 /* OHAttributedLabel.m in Sources */,
 				1361F61E1ACE7BEF00C1FBE6 /* ZoomScrollView.m in Sources */,
 				1361F6601ACEBC6900C1FBE6 /* CameraShutterButton.m in Sources */,
+				13B6668B1AD5184B00B39A31 /* LPhotoTool.m in Sources */,
 				1361F52D1ACD641300C1FBE6 /* FBHelper.m in Sources */,
 				1361F5E21ACE6EE200C1FBE6 /* UIViewAdditions.m in Sources */,
 				1361F5351ACD643200C1FBE6 /* OHLableHelper.m in Sources */,
